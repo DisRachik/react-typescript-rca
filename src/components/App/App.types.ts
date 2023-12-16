@@ -1,5 +1,6 @@
-export type User = {
-  id: number;
+export type Props = {
+  idUser?: number;
   name: string;
-  email: string;
+  age: number;
+  email?: string;
 };
