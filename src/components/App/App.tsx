@@ -1,3 +1,4 @@
+import { CheckoutPagePayment } from '../PaymentForm';
 import { TextInput } from '../TextInput';
 import { PropsInput } from '../TextInput/TextInput.types';
 import { User } from '../User';
@@ -22,8 +23,9 @@ export function App() {
   return (
     <>
       {/* <User {...user} /> */}
-      <User {...user} children={text} />
+      <User {...user} children={text} /> <br />
       <TextInput initialValue={input.initialValue} onSave={input.onSave} />
+      <CheckoutPagePayment />
     </>
   );
 }
