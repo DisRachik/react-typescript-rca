@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
-export const AddTodoForm = ({ onAdd }) => {
-  const [newTodo, setNewTodo] = useState('');
+interface IAddTodoFormProps {
+  onAdd: (text: string) => void;
+}
 
-  const handleSubmit = (e) => {
+export const AddTodoForm: FC<IAddTodoFormProps> = ({ onAdd }) => {
+  const [newTodo, setNewTodo] = useState<string>('');
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onAdd(newTodo);
     setNewTodo('');
   };
 
-  const onChange = (e) => setNewTodo(e.target.value);
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => setNewTodo(e.target.value);
 
   return (
     <form onSubmit={handleSubmit}>

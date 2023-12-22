@@ -4,3 +4,8 @@ export type Props = {
   age: number;
   email?: string;
 };
+
+export interface Task {
+  id: number;
+  text: string;
+}

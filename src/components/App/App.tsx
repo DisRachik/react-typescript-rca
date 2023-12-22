@@ -1,28 +1,29 @@
 import { useState } from 'react';
 // import { CheckoutPagePayment } from '../PaymentForm';
 // import { TextInput } from '../TextInput';
-import { PropsInput } from '../TextInput/TextInput.types';
+// import { PropsInput } from '../TextInput/TextInput.types';
 // import { User } from '../User';
 
-import { Props } from './App.types';
+// import { Props } from './App.types';
 
 import './App.css';
 import { AddTodoForm } from '../AddTodoForm';
 import { TodoItem } from '../TodoItem';
+import { Task } from './App.types';
 
-const user: Props = {
-  idUser: 1,
-  name: 'Jon',
-  age: 34,
-  email: 'mail@example.com',
-};
+// const user: Props = {
+//   idUser: 1,
+//   name: 'Jon',
+//   age: 34,
+//   email: 'mail@example.com',
+// };
 
-const input: PropsInput = {
-  initialValue: '',
-  onSave: (value) => {},
-};
+// const input: PropsInput = {
+//   initialValue: '',
+//   onSave: (value) => {},
+// };
 
-const text: string = `The e-mail is passed as a child: ${user.email}`;
+// const text: string = `The e-mail is passed as a child: ${user.email}`;
 
 // export function App() {
 //   return (
@@ -35,16 +36,19 @@ const text: string = `The e-mail is passed as a child: ${user.email}`;
 //   );
 // }
 
-// for Todo project with React
-export function App() {
-  const [todos, setTodos] = useState([]);
+/*-----  -----*/
+/*----- for Todo project with React -----*/
+/*-----  -----*/
 
-  const addTodo = (text) => {
+export function App() {
+  const [todos, setTodos] = useState<Task[]>([]);
+
+  const addTodo = (text: string) => {
     const newTodo = { id: Date.now(), text };
     setTodos([...todos, newTodo]);
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id: number) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
