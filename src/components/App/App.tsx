@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { CheckoutPagePayment } from '../PaymentForm';
 // import { TextInput } from '../TextInput';
 // import { PropsInput } from '../TextInput/TextInput.types';
@@ -6,10 +6,14 @@ import { useState } from 'react';
 
 // import { Props } from './App.types';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/store';
+
 import './App.css';
 import { AddTodoForm } from '../AddTodoForm';
 import { TodoItem } from '../TodoItem';
-import { Task } from './App.types';
+// import { Task } from './App.types';
+import { addTodo, deleteTodo } from '../../redux/todoSlice';
 
 // const user: Props = {
 //   idUser: 1,
@@ -36,30 +40,35 @@ import { Task } from './App.types';
 //   );
 // }
 
-/*-----  -----*/
-/*----- for Todo project with React -----*/
-/*-----  -----*/
+/**-----  -----*/
+/**----- for Todo project with React -----*/
+/**-----  -----*/
 
 export function App() {
-  const [todos, setTodos] = useState<Task[]>([]);
+  // const [todos, setTodos] = useState<Task[]>([]);
 
-  const addTodo = (text: string) => {
-    const newTodo = { id: Date.now(), text };
-    setTodos([...todos, newTodo]);
-  };
+  // const addTodo = (text: string) => {
+  //   const newTodo = { id: Date.now(), text };
+  //   setTodos([...todos, newTodo]);
+  // };
 
-  const deleteTodo = (id: number) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
-  };
+  // const deleteTodo = (id: number) => {
+  //   const newTodos = todos.filter((todo) => todo.id !== id);
+  //   setTodos(newTodos);
+  // };
+
+  /** with use Redux */
+  const todos = useSelector((state: RootState) => state.todos);
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
       <h1>Todo list</h1>
-      <AddTodoForm onAdd={addTodo} />
+      {/* <AddTodoForm onAdd={addTodo} /> */}
+      <AddTodoForm onAdd={(text) => dispatch(addTodo(text))} />
       <ul>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} onDelete={deleteTodo} />
+          <TodoItem key={todo.id} todo={todo} onDelete={(id) => dispatch(deleteTodo(id))} />
         ))}
       </ul>
     </div>
